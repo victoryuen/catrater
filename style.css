@@ -1,0 +1,82 @@
+body{
+    background-color: #E083E6;
+    color: #E6EAFE;
+    text-align: center;
+}
+#title{
+    font-size: 80px;
+    text-align: center;
+    color:#E6EAFE;
+
+}
+.button {
+    background-color: #6E80B2;
+    border: 0;
+    color: #fefbef;
+    font-family: "Micro 5", sans-serif;
+    font-weight: 400;
+    font-style: 30;
+    line-height: 1;
+    margin-top: 1.5rem;
+    width: 100%; /* Large, mobile-friendly touch target */
+    height: 10%;
+    border-radius: 10px;
+    font-size: 40px;
+    /* Media Queries */
+    @media (min-width: 37.5em) {
+      width: auto; /* Smaller buttons on larger screens */
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+
+#output-first{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+#output-image{
+  /* text-align: center; */
+  display: none;
+  
+}
+#output-image-info{
+  height:30%;
+  width:30%;
+  /* display:none; */
+  @media (max-width: 37.5em) {
+    width:auto;
+  }
+}
+.micro-5-regular {
+  font-family: "Micro 5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rubik {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+#button-rate{
+  text-align: center;
+  padding-top: 10px;
+  @media (max-width: 369px) {
+    width:auto;
+  }
+  
+}
+.rate{
+  border-radius: 5px;
+  font-size:30px;
+  padding: 10px;
+  font-family: "Micro 5", sans-serif;
+}
+
+#warning{
+  font-size: 30px;
+}
