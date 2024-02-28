@@ -1,7 +1,9 @@
 let toggle = false; 
 let rating = 0;
+let catCounted = 0;
 const warning = document.querySelector("#warning")
 const color_change = document.querySelector(".button");
+const cat_rating = document.querySelector("#counter-text")
 let output_container = document.querySelector("#output-image");
 const random_image = "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1"
 const headers = new Headers({
@@ -20,7 +22,6 @@ const getCatUrl = async (url) => {
     try {
         const response = await fetch(url, requestOptions);
         const imageData = await response.json();
-        console.log(imageData);
         return imageData[0];
     } catch (error) {
         console.error('Error fetching cat images:', error);
@@ -32,7 +33,8 @@ const getCatUrl = async (url) => {
 
 const checkCondition = () =>{
     if(!toggle){
-        buttonClick.disabled = true;   
+        buttonClick.disabled = true;  
+        
         // warning.innerHTML = "Please select a rating before continuing"
         buttonClick.style.backgroundColor = "red";
         for(let i = 0; i < 11; i++) {
@@ -45,6 +47,9 @@ const checkCondition = () =>{
     }
 }
 const checkRating = (score) =>{
+    catCounted+=1;
+    cat_rating.innerHTML = "Cat Rated: " + catCounted;
+   
     if(score == 1){
         warning.innerHTML= "1 IS CRAZYYYYYY"
     }
@@ -77,6 +82,7 @@ const checkRating = (score) =>{
 
 }
 
+
 const buttonClick = document.querySelector(".button");
 buttonClick.addEventListener("click", () => {
     // Call the API request function
@@ -86,7 +92,6 @@ buttonClick.addEventListener("click", () => {
         text = document.querySelector("#output-first");
 
         text.innerHTML = imageUrl.breeds[0].name;
-        console.log(imageUrl.breeds[0]);
         img.src = imageUrl.url;
         output_container.style.display = "block";
         warning.innerHTML=""

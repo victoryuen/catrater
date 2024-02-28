@@ -80,3 +80,16 @@ body{
 #warning{
   font-size: 30px;
 }
+ul{
+  list-style: none;
+  text-align: left;
+  display: flex;
+}
+a{
+  text-decoration: none;
+  color:E6EAFE ;
+}
+#counter-text{
+  font-size: 30px;
+  margin-top: 10px;
+}
