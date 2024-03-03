@@ -1,6 +1,10 @@
 let toggle = false; 
+let specialCat = false;
+const rate_text = document.querySelector("#button-rate")
 let rating = 0;
 let catCounted = 0;
+let randomNum = 0;
+const ten_only = document.querySelector('#ten-button')
 const warning = document.querySelector("#warning")
 const color_change = document.querySelector(".button");
 const cat_rating = document.querySelector("#counter-text")
@@ -34,16 +38,14 @@ const getCatUrl = async (url) => {
 const checkCondition = () =>{
     if(!toggle){
         buttonClick.disabled = true;  
-        
         // warning.innerHTML = "Please select a rating before continuing"
         buttonClick.style.backgroundColor = "red";
-        for(let i = 0; i < 11; i++) {
-            rate_button[i].disabled = false;
-        }
+        rate_text.style.display = "block";
         warning.innerHTML=""
     }
     else{
-        buttonClick.disabled = false;
+        console.timeLog(rate_text)
+        rate_text.style.display = "none";
     }
 }
 const checkRating = (score) =>{
@@ -69,14 +71,15 @@ const checkRating = (score) =>{
     else if (score== 9){
         warning.innerHTML = "CUTIE CAT"
     }
+    else if(score == 10 && specialCat){
+        warning.innerHTML = "ofc easter a 10 tf?"
+    }
     else{
         warning.innerHTML= "EASTER GOT COMP"
     }
     buttonClick.style.backgroundColor = "#6E80B2";
     buttonClick.disabled = false;   
-    for(let i = 0; i < 11; i++) {
-        rate_button[i].disabled = true;
-    }
+    rate_text.style.display = "none";
     
     
 
@@ -86,23 +89,49 @@ const checkRating = (score) =>{
 const buttonClick = document.querySelector(".button");
 buttonClick.addEventListener("click", () => {
     // Call the API request function
-    getCatUrl(random_image).then((imageUrl) => {
-        // Set the src attribute of the output image element
-        img = document.querySelector("#output-image-info");
-        text = document.querySelector("#output-first");
-
-        text.innerHTML = imageUrl.breeds[0].name;
-        img.src = imageUrl.url;
+    randomNum = Math.floor(Math.random()* 11)
+    img = document.querySelector("#output-image-info");
+    text = document.querySelector("#output-first");
+    console.log(randomNum)
+    if(randomNum < 1){
+        
+        specialCat = true
+        text.innerHTML = "Easter";
+        img.src = "easter.jpg";
+        for(let i = 0;i<9;i++){
+            rate_button[i].style.display = "none"
+        }
         output_container.style.display = "block";
-        warning.innerHTML=""
-        // var container = document.querySelector("#output-image");
-        // container.appendChild(img)
+        
         checkCondition();
-          
-
-    }).catch((error) => {
-        console.error('Error:', error);
-    });
+        
+    }
+    else{
+        for(let i = 0;i<9;i++){
+            rate_button[i].style.display = "inline-block"
+        }
+        specialCat = false
+        getCatUrl(random_image).then((imageUrl) => {
+            // Set the src attribute of the output image element
+            
+    
+            text.innerHTML = imageUrl.breeds[0].name;
+            img.src = imageUrl.url;
+            output_container.style.display = "block";
+            warning.innerHTML=""
+            // var container = document.querySelector("#output-image");
+            // container.appendChild(img)
+            checkCondition();
+              
+    
+        }).catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+    
+        
+    
+    
 });
 
 
