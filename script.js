@@ -31,7 +31,7 @@ const getCatUrl = async (url) => {
         console.error('Error fetching cat images:', error);
         throw error; 
     }
-
+    
 }
 
 
